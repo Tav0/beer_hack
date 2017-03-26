@@ -2,16 +2,19 @@
 
 import pyrebase
 
-config = {
-    "apiKey": "apiKey",
-    "authDomain": "project-id.firebaseapp.com",
-    "databaseURL": "https://project-id.firebaseio.com",
-    "storageBucket": "project-id.appspot.com"
-}
+db = None
 
-firebase = pyrebase.initialize_app(config)
+def startFireBase(apiKey, authDomain, databaseURL, storageBucket):
+    config = {
+        "apiKey": apiKey,
+        "authDomain": authDomain,
+        "databaseURL": databaseURL,
+        "storageBucket": storageBucket,
+    }
 
-db = firebase.database()
+    firebase = pyrebase.initialize_app(config)
 
-data = {"first": "test1", "second": "test2"}
-db.child("data").child("thermo").set(data)
+    db = firebase.database()
+
+def sendData(data):
+  db.child("data").child("fridge1").set(data)
